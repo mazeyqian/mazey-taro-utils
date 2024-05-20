@@ -2,11 +2,8 @@
   "name": "mazey-taro-utils",
   "version": "0.0.1",
   "description": "Mazey's Taro utils.",
-  "main": "lib/index.cjs.js",
+  "main": "lib/index.esm.js",
   "module": "lib/index.esm.js",
-  "typings": "lib/index.d.ts",
-  "types": "lib/index.d.ts",
-  "mainEntryPointFilePath": "lib/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --config ./scripts/webpack.config.dev.js --open",
     "build": "rollup --config ./scripts/rollup.config.js",

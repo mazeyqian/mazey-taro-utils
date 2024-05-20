@@ -14,7 +14,7 @@ const _resolve = (_path) => path.resolve(__dirname, _path);
 const pkgName = require('../package.json').name;
 const iifeName = pkgName.replace(/-/g, '_').toUpperCase();
 const pkgVersion = process.env.SCRIPTS_NPM_PACKAGE_VERSION || process.env.VERSION || require('../package.json').version;
-const inputResolve = _resolve('../src/index.ts');
+const inputResolve = _resolve('../lib/index.ts');
 const banner =
   '/*!\n' +
   ` * ${pkgName} v${pkgVersion}\n` +
@@ -39,12 +39,12 @@ const plugins = [
     ],
   }),
   // Add minification.
-  terser({
-    format: {
-      // https://github.com/terser/terser#format-options
-      comments: /^!\n\s\*\smazey-taro-utils/, // `'some'`/`false` to omit comments in the output
-    },
-  }),
+  // terser({
+  //   format: {
+  //     // https://github.com/terser/terser#format-options
+  //     comments: /^!\n\s\*\smazey-taro-utils/, // `'some'`/`false` to omit comments in the output
+  //   },
+  // }),
 ];
 
 const dTsConf = {
@@ -67,11 +67,11 @@ export default [
     input: inputResolve,
     // https://rollupjs.org/guide/en/#outputformat
     output: [
-      {
-        file: _resolve('../lib/index.cjs.js'),
-        format: 'cjs',
-        banner,
-      },
+      // {
+      //   file: _resolve('../lib/index.cjs.js'),
+      //   format: 'cjs',
+      //   banner,
+      // },
       {
         file: _resolve('../lib/index.esm.js'),
         format: 'esm',
@@ -80,30 +80,30 @@ export default [
     ],
     plugins: [
       // Remove the `lib` directory before rebuilding.
-      cleaner({
-        targets: [
-          _resolve('../lib/'),
-        ],
-      }),
+      // cleaner({
+      //   targets: [
+      //     _resolve('../lib/'),
+      //   ],
+      // }),
       ...plugins,
     ],
     external: [],
   },
-  {
-    input: inputResolve,
-    // https://rollupjs.org/guide/en/#outputformat
-    output: [
-      {
-        file: _resolve(`../lib/${pkgName}.min.js`),
-        format: 'iife',
-        name: iifeName,
-        banner,
-      },
-    ],
-    plugins: [
-      resolve(),
-      ...plugins,
-    ],
-  },
+  // {
+  //   input: inputResolve,
+  //   // https://rollupjs.org/guide/en/#outputformat
+  //   output: [
+  //     {
+  //       file: _resolve(`../lib/${pkgName}.min.js`),
+  //       format: 'iife',
+  //       name: iifeName,
+  //       banner,
+  //     },
+  //   ],
+  //   plugins: [
+  //     resolve(),
+  //     ...plugins,
+  //   ],
+  // },
   dTsConf,
 ];
