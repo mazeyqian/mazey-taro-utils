@@ -55,3 +55,5 @@ export const getWindowSize = () => {
     hwRatio,
   };
 };
+
+// todo: isMiddleScreen, isLongScreen
