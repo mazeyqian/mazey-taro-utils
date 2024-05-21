@@ -6,7 +6,7 @@ import {
   navigateTo, redirectTo,
 } from '@tarojs/taro';
 
-export const toast = (msg: string): void => {
+export const quickToast = (msg: string): void => {
   showToast({
     title: msg,
     icon: 'none',

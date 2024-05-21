@@ -22,7 +22,7 @@ Of course, you can also download this file and serve it yourself. The file locat
 
 ## Usage
 
-### `toast`
+### `quickToast`
 
 Displays a toast message.
 
@@ -33,7 +33,7 @@ Displays a toast message.
 **Example Usage:**
 
 ```javascript
-toast('Hello, world!');
+quickToast('Hello, world!');
 ```
 
 ### `isH5`
