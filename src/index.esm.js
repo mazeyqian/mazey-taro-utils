@@ -1,6 +1,6 @@
 /*!
- * mazey-taro-utils vunknown https://github.com/mazeyqian/mazey-taro-utils
- * (c) 2018-2024 Cheng
+ * mazey-taro-utils v0.0.1
+ * (c) 2018-2024 Cheng https://www.npmjs.com/package/mazey-taro-utils
  * Released under the MIT License.
  */
 import { showToast, navigateTo, redirectTo } from '@tarojs/taro';
