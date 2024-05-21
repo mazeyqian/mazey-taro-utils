@@ -97,6 +97,8 @@ quickRedirectTo('login');
 
 ## Contributing
 
+Node.js Version: `16.x`
+
 Install Dependencies:
 
 ```shell

@@ -2,7 +2,7 @@
  * @author Cheng
  */
 import {
-  showToast,
+  showToast, getWindowInfo,
   navigateTo, redirectTo,
 } from '@tarojs/taro';
 
@@ -31,4 +31,16 @@ export const quickRedirectTo = (page: string): void => {
   redirectTo({
     url: `/pages/${page}/index`,
   });
+};
+
+export const getWindowSize = () => {
+  const { windowHeight, windowWidth } = getWindowInfo();
+  const widthHeightRatio = windowWidth / windowHeight;
+  const hwRatio = windowHeight / windowWidth;
+  return {
+    width: windowWidth,
+    height: windowHeight,
+    ratio: widthHeightRatio,
+    hwRatio,
+  };
 };
