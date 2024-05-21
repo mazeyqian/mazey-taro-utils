@@ -5,6 +5,7 @@ import {
   showToast, getWindowInfo,
   navigateTo, redirectTo,
 } from '@tarojs/taro';
+import { getBrowserInfo } from 'mazey';
 
 export const quickToast = (msg: string): void => {
   showToast({
@@ -15,6 +16,16 @@ export const quickToast = (msg: string): void => {
 
 export const isH5 = (): boolean => {
   return process.env.TARO_ENV === 'h5';
+};
+
+export const isPC = (): boolean => {
+  if (isH5()) {
+    const info = getBrowserInfo();
+    if (info.platform === 'desktop') {
+      return true;
+    }
+  }
+  return false;
 };
 
 export const getEnv = (): string => {

@@ -105,7 +105,8 @@ export default [
         banner,
         plugins: iifePlugins,
         globals: {
-          '@tarojs/taro': 'taro', // Specify the global variable name here
+          '@tarojs/taro': 'taro',
+          'mazey': 'mazey',
         },
       },
     ],
@@ -117,7 +118,7 @@ export default [
         ],
       }),
     ],
-    external: [ '@tarojs/taro' ],
+    external: [ '@tarojs/taro', 'mazey' ],
   },
   dTsConf,
   gTsConf,
