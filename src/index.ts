@@ -3,7 +3,7 @@
  */
 import {
   showToast, getWindowInfo, getSystemInfoSync,
-  navigateTo, redirectTo,
+  navigateTo, redirectTo, login,
 } from '@tarojs/taro';
 import { getBrowserInfo } from 'mazey';
 
@@ -26,6 +26,24 @@ export const getSystem = () => {
 
 export const getEnv = (): string => {
   return process.env.TARO_ENV || '';
+};
+
+export const getLoginCodeAsync = async () => {
+  const res = await new Promise<string>((resolve, reject) => {
+    login({
+      success: (res) => {
+        resolve(res.code);
+      },
+      fail: (err) => {
+        reject(err);
+      },
+    });
+  });
+  const code = res || '';
+  if (!code) {
+    return Promise.reject('fail');
+  }
+  return code;
 };
 
 export const isWeb = (): boolean => {
