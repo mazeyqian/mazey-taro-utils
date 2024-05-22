@@ -67,18 +67,18 @@ const gTsConf = {
   external: [],
 };
 
-// if (debugMode !== 'open') {
-//   iifePlugins.push(
-//     // Add minification.
-//     // https://github.com/TrySound/rollup-plugin-terser
-//     terser({ // https://github.com/terser/terser
-//       format: {
-//         // https://github.com/terser/terser#format-options
-//         comments: /^!\n\s\*\smazey-taro-utils/,
-//       },
-//     }),
-//   );
-// }
+if (debugMode !== 'open') {
+  iifePlugins.push(
+    // Add minification.
+    // https://github.com/TrySound/rollup-plugin-terser
+    terser({ // https://github.com/terser/terser
+      format: {
+        // https://github.com/terser/terser#format-options
+        comments: /^!\n\s\*\smazey-taro-utils/,
+      },
+    }),
+  );
+}
 
 // https://rollupjs.org/guide/en/
 export default [
