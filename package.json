@@ -1,6 +1,6 @@
 {
   "name": "mazey-taro-utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Mazey's Taro utils.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
