@@ -1,6 +1,6 @@
 {
   "name": "mazey-taro-utils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Mazey's Taro utils.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -61,7 +61,6 @@
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.33.2",
     "cross-env": "^7.0.3",
     "date-fns": "^2.30.0",
     "eslint": "^8.54.0",
@@ -101,6 +100,7 @@
   },
   "dependencies": {
     "@tarojs/taro": "^3.6.0",
-    "mazey": "^4.0.7"
+    "mazey": "^4.0.7",
+    "core-js": "^3.33.2"
   }
 }
