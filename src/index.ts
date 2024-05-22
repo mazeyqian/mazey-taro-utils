@@ -2,10 +2,18 @@
  * @author Cheng
  */
 import {
-  showToast, getWindowInfo, getSystemInfoSync,
+  showToast, getWindowInfo, getSystemInfoSync, getCurrentInstance,
   navigateTo, redirectTo, login,
 } from '@tarojs/taro';
 import { getBrowserInfo } from 'mazey';
+
+export const getCurrentPage = () => {
+  const ins = getCurrentInstance();
+  if (ins && ins.router && ins.router.path) {
+    return ins.router.path;
+  }
+  return '';
+};
 
 export const getWindowSize = () => {
   const { windowHeight, windowWidth } = getWindowInfo();
@@ -113,14 +121,30 @@ export const quickToast = (msg: string): void => {
   });
 };
 
-export const quickNavigateTo = (page: string): void => {
+const objToQuery = (obj: { [key: string]: string }): string => {
+  let res: string = '?';
+  for (const i in obj) {
+    res += `${i}=${obj[i]}&`;
+  }
+  return res.slice(0, -1);
+};
+
+export const quickNavigateTo = (page: string, { params = {} } = {}): void => {
+  let queryStr = '';
+  if (params && Object.keys(params).length > 0) {
+    queryStr = objToQuery(params);
+  }
   navigateTo({
-    url: `/pages/${page}/index`,
+    url: `/pages/${page}/index${queryStr}`,
   });
 };
 
-export const quickRedirectTo = (page: string): void => {
+export const quickRedirectTo = (page: string, { params = {} } = {}): void => {
+  let queryStr = '';
+  if (params && Object.keys(params).length > 0) {
+    queryStr = objToQuery(params);
+  }
   redirectTo({
-    url: `/pages/${page}/index`,
+    url: `/pages/${page}/index${queryStr}`,
   });
 };
