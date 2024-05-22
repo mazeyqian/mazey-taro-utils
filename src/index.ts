@@ -2,33 +2,10 @@
  * @author Cheng
  */
 import {
-  showToast, getWindowInfo,
+  showToast, getWindowInfo, getSystemInfoSync,
   navigateTo, redirectTo,
 } from '@tarojs/taro';
 import { getBrowserInfo } from 'mazey';
-
-export const quickToast = (msg: string): void => {
-  showToast({
-    title: msg,
-    icon: 'none',
-  });
-};
-
-export const getEnv = (): string => {
-  return process.env.TARO_ENV || '';
-};
-
-export const quickNavigateTo = (page: string): void => {
-  navigateTo({
-    url: `/pages/${page}/index`,
-  });
-};
-
-export const quickRedirectTo = (page: string): void => {
-  redirectTo({
-    url: `/pages/${page}/index`,
-  });
-};
 
 export const getWindowSize = () => {
   const { windowHeight, windowWidth } = getWindowInfo();
@@ -42,10 +19,22 @@ export const getWindowSize = () => {
   };
 };
 
+export const getSystem = () => {
+  const { system } = getSystemInfoSync();
+  return system;
+};
+
+export const getEnv = (): string => {
+  return process.env.TARO_ENV || '';
+};
+
 export const isWeb = (): boolean => {
   return process.env.TARO_ENV === 'h5';
 };
 
+/**
+ * Alias of `isWeb`.
+ */
 export const isH5 = (): boolean => {
   return isWeb();
 };
@@ -60,12 +49,19 @@ export const isPC = (): boolean => {
   return false;
 };
 
-export const isMiddleScreen = (): boolean => {
+export const isWideScreen = (): boolean => {
   const { ratio } = getWindowSize();
   if (ratio > 0.7) {
     return true;
   }
   return false;
+};
+
+/**
+ * Alias of `isWideScreen`.
+ */
+export const isMiddleScreen = (): boolean => {
+  return isWideScreen();
 };
 
 export const isLongScreen = (): boolean => {
@@ -74,4 +70,39 @@ export const isLongScreen = (): boolean => {
     return true;
   }
   return false;
+};
+
+export const isIOS = (): boolean => {
+  const system = getSystem();
+  if (system.toLowerCase().indexOf('ios') > -1) {
+    return true;
+  }
+  return false;
+};
+
+export const isAndroid = (): boolean => {
+  const system = getSystem();
+  if (system.toLowerCase().indexOf('android') > -1) {
+    return true;
+  }
+  return false;
+};
+
+export const quickToast = (msg: string): void => {
+  showToast({
+    title: msg,
+    icon: 'none',
+  });
+};
+
+export const quickNavigateTo = (page: string): void => {
+  navigateTo({
+    url: `/pages/${page}/index`,
+  });
+};
+
+export const quickRedirectTo = (page: string): void => {
+  redirectTo({
+    url: `/pages/${page}/index`,
+  });
 };
