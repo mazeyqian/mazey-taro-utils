@@ -5,7 +5,7 @@ import {
   showToast, getWindowInfo, getSystemInfoSync, getCurrentInstance,
   navigateTo, redirectTo, login,
 } from '@tarojs/taro';
-import { getBrowserInfo } from 'mazey';
+import { convertObjectToQuery, getBrowserInfo } from 'mazey';
 
 export const getCurrentPage = () => {
   const ins = getCurrentInstance();
@@ -121,29 +121,23 @@ export const quickToast = (msg: string): void => {
   });
 };
 
-const objToQuery = (obj: { [key: string]: string }): string => {
-  let res: string = '?';
-  for (const i in obj) {
-    res += `${i}=${obj[i]}&`;
-  }
-  return res.slice(0, -1);
-};
+// const objToQuery = (obj: { [key: string]: string }): string => {
+//   let res: string = '?';
+//   for (const i in obj) {
+//     res += `${i}=${obj[i]}&`;
+//   }
+//   return res.slice(0, -1);
+// };
 
 export const quickNavigateTo = (page: string, { params = {} } = {}): void => {
-  let queryStr = '';
-  if (params && Object.keys(params).length > 0) {
-    queryStr = objToQuery(params);
-  }
+  const queryStr = convertObjectToQuery(params);
   navigateTo({
     url: `/pages/${page}/index${queryStr}`,
   });
 };
 
 export const quickRedirectTo = (page: string, { params = {} } = {}): void => {
-  let queryStr = '';
-  if (params && Object.keys(params).length > 0) {
-    queryStr = objToQuery(params);
-  }
+  const queryStr = convertObjectToQuery(params);
   redirectTo({
     url: `/pages/${page}/index${queryStr}`,
   });
