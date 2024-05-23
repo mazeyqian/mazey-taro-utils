@@ -15,6 +15,27 @@ export const getCurrentPage = () => {
   return "";
 };
 
+export const getAllParams = () => {
+  const ins = getCurrentInstance();
+  if (ins && ins.router && ins.router.params) {
+    return ins.router.params;
+  }
+  return {};
+};
+
+/**
+ * ZH: Taro: 获取当前页面的 Query 参数。
+ * 
+ * EN: Get the query param's value of the current path(Taro).
+ * 
+ * @param name 
+ * @returns 
+ */
+export const getQueryParam = (name: string) => {
+  const allParams = getAllParams();
+  return allParams[name] || "";
+};
+
 export const getWindowSize = () => {
   const { windowHeight, windowWidth } = getWindowInfo();
   const widthHeightRatio = windowWidth / windowHeight;
@@ -138,14 +159,6 @@ export const quickToast = (msg: string): void => {
     icon: "none",
   });
 };
-
-// const objToQuery = (obj: { [key: string]: string }): string => {
-//   let res: string = '?';
-//   for (const i in obj) {
-//     res += `${i}=${obj[i]}&`;
-//   }
-//   return res.slice(0, -1);
-// };
 
 export const quickNavigateTo = (page: string, { params = {} } = {}): void => {
   const queryStr = convertObjectToQuery(params);
