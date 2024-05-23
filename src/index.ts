@@ -54,15 +54,33 @@ export const getLoginCodeAsync = async () => {
   return code;
 };
 
-export const isWeb = (): boolean => {
+export const isMiniProgram = (): boolean => {
+  return process.env.TARO_ENV === "weapp";
+};
+
+/**
+ * Alias of `isMiniProgram`.
+ */
+export const isWeapp = (): boolean => {
+  return isMiniProgram();
+};
+
+export const isBrowser = (): boolean => {
   return process.env.TARO_ENV === "h5";
 };
 
 /**
- * Alias of `isWeb`.
+ * Alias of `isBrowser`.
+ */
+export const isWeb = (): boolean => {
+  return isBrowser();
+};
+
+/**
+ * Alias of `isBrowser`.
  */
 export const isH5 = (): boolean => {
-  return isWeb();
+  return isBrowser();
 };
 
 export const isPC = (): boolean => {
