@@ -4,15 +4,15 @@
 import {
   showToast, getWindowInfo, getSystemInfoSync, getCurrentInstance,
   navigateTo, redirectTo, login,
-} from '@tarojs/taro';
-import { convertObjectToQuery, getBrowserInfo } from 'mazey';
+} from "@tarojs/taro";
+import { convertObjectToQuery, getBrowserInfo } from "mazey";
 
 export const getCurrentPage = () => {
   const ins = getCurrentInstance();
   if (ins && ins.router && ins.router.path) {
     return ins.router.path;
   }
-  return '';
+  return "";
 };
 
 export const getWindowSize = () => {
@@ -33,7 +33,7 @@ export const getSystem = () => {
 };
 
 export const getEnv = (): string => {
-  return process.env.TARO_ENV || '';
+  return process.env.TARO_ENV || "";
 };
 
 export const getLoginCodeAsync = async () => {
@@ -47,15 +47,15 @@ export const getLoginCodeAsync = async () => {
       },
     });
   });
-  const code = res || '';
+  const code = res || "";
   if (!code) {
-    return Promise.reject('fail');
+    return Promise.reject("fail");
   }
   return code;
 };
 
 export const isWeb = (): boolean => {
-  return process.env.TARO_ENV === 'h5';
+  return process.env.TARO_ENV === "h5";
 };
 
 /**
@@ -68,7 +68,7 @@ export const isH5 = (): boolean => {
 export const isPC = (): boolean => {
   if (isH5()) {
     const info = getBrowserInfo();
-    if (info.platform === 'desktop') {
+    if (info.platform === "desktop") {
       return true;
     }
   }
@@ -100,7 +100,7 @@ export const isLongScreen = (): boolean => {
 
 export const isIOS = (): boolean => {
   const system = getSystem();
-  if (system.toLowerCase().indexOf('ios') > -1) {
+  if (system.toLowerCase().indexOf("ios") > -1) {
     return true;
   }
   return false;
@@ -108,7 +108,7 @@ export const isIOS = (): boolean => {
 
 export const isAndroid = (): boolean => {
   const system = getSystem();
-  if (system.toLowerCase().indexOf('android') > -1) {
+  if (system.toLowerCase().indexOf("android") > -1) {
     return true;
   }
   return false;
@@ -117,7 +117,7 @@ export const isAndroid = (): boolean => {
 export const quickToast = (msg: string): void => {
   showToast({
     title: msg,
-    icon: 'none',
+    icon: "none",
   });
 };
 

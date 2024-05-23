@@ -1,1 +1,1 @@
-console.log('dev: mazey-taro-utils');
+console.log("dev: mazey-taro-utils");
