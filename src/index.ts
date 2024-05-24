@@ -7,6 +7,11 @@ import {
 } from "@tarojs/taro";
 import { convertObjectToQuery, getBrowserInfo } from "mazey";
 
+/**
+ * ZH: 获取当前页面的路径。
+ * 
+ * EN: Get the path of the current page.
+ */
 export const getCurrentPage = () => {
   const ins = getCurrentInstance();
   if (ins && ins.router && ins.router.path) {
@@ -15,6 +20,11 @@ export const getCurrentPage = () => {
   return "";
 };
 
+/**
+ * ZH: 获取当前页面的所有参数。
+ * 
+ * EN: Get all params of the current page.
+ */
 export const getAllParams = () => {
   const ins = getCurrentInstance();
   if (ins && ins.router && ins.router.params) {
@@ -24,18 +34,20 @@ export const getAllParams = () => {
 };
 
 /**
- * ZH: Taro: 获取当前页面的 Query 参数。
+ * ZH: 获取当前路径（Taro）的查询参数的值。
  * 
  * EN: Get the query param's value of the current path(Taro).
- * 
- * @param name 
- * @returns 
  */
 export const getQueryParam = (name: string) => {
   const allParams = getAllParams();
   return allParams[name] || "";
 };
 
+/**
+ * ZH: 获取当前窗口的尺寸。
+ * 
+ * EN: Get the size of the current window.
+ */
 export const getWindowSize = () => {
   const { windowHeight, windowWidth } = getWindowInfo();
   const widthHeightRatio = windowWidth / windowHeight;
@@ -48,11 +60,21 @@ export const getWindowSize = () => {
   };
 };
 
+/**
+ * ZH: 获取当前系统信息，如 "iOS 14.4"。
+ * 
+ * EN: Get the current system information.
+ */
 export const getSystem = () => {
   const { system } = getSystemInfoSync();
   return system;
 };
 
+/**
+ * ZH: 获取当前构建的平台，如 weapp、swan、alipay、h5、rn、tt、quickapp、qq、jd。
+ * 
+ * EN: Get the current platform, such as weapp, swan, alipay, h5, rn, tt, quickapp, qq, jd.
+ */
 export const getEnv = (): string => {
   return process.env.TARO_ENV || "";
 };
@@ -75,6 +97,11 @@ export const getLoginCodeAsync = async () => {
   return code;
 };
 
+/**
+ * ZH: 是否是微信小程序环境。
+ * 
+ * EN: Is it a WeChat Mini Program environment.
+ */
 export const isMiniProgram = (): boolean => {
   return process.env.TARO_ENV === "weapp";
 };
@@ -86,6 +113,11 @@ export const isWeapp = (): boolean => {
   return isMiniProgram();
 };
 
+/**
+ * ZH: 是否是浏览器环境。
+ * 
+ * EN: Is it a browser environment.
+ */
 export const isBrowser = (): boolean => {
   return process.env.TARO_ENV === "h5";
 };
@@ -104,6 +136,11 @@ export const isH5 = (): boolean => {
   return isBrowser();
 };
 
+/**
+ * ZH: 是否是 PC 端浏览器环境。
+ * 
+ * EN: Is it a PC browser environment.
+ */
 export const isPC = (): boolean => {
   if (isH5()) {
     const info = getBrowserInfo();
@@ -114,6 +151,11 @@ export const isPC = (): boolean => {
   return false;
 };
 
+/**
+ * ZH: 是否是宽屏设备。
+ * 
+ * EN: Is it a wide screen device.
+ */
 export const isWideScreen = (): boolean => {
   const { ratio } = getWindowSize();
   if (ratio > 0.7) {
@@ -129,6 +171,11 @@ export const isMiddleScreen = (): boolean => {
   return isWideScreen();
 };
 
+/**
+ * ZH: 是否是长屏设备。
+ * 
+ * EN: Is it a long screen device.
+ */
 export const isLongScreen = (): boolean => {
   const { hwRatio } = getWindowSize();
   if (hwRatio > 1.9) {
@@ -137,6 +184,11 @@ export const isLongScreen = (): boolean => {
   return false;
 };
 
+/**
+ * ZH: 是否是 iOS 系统。
+ * 
+ * EN: Is it an iOS system.
+ */
 export const isIOS = (): boolean => {
   const system = getSystem();
   if (system.toLowerCase().indexOf("ios") > -1) {
@@ -145,6 +197,11 @@ export const isIOS = (): boolean => {
   return false;
 };
 
+/**
+ * ZH: 是否是 Android 系统。
+ * 
+ * EN: Is it an Android system.
+ */
 export const isAndroid = (): boolean => {
   const system = getSystem();
   if (system.toLowerCase().indexOf("android") > -1) {
@@ -153,6 +210,11 @@ export const isAndroid = (): boolean => {
   return false;
 };
 
+/**
+ * ZH: 快速显示一个 Toast 提示。
+ * 
+ * EN: Quickly show a Toast.
+ */
 export const quickToast = (msg: string): void => {
   showToast({
     title: msg,
@@ -160,6 +222,11 @@ export const quickToast = (msg: string): void => {
   });
 };
 
+/**
+ * ZH: 快速跳转到指定页面。
+ * 
+ * EN: Quickly navigate to a page.
+ */
 export const quickNavigateTo = (page: string, { params = {} } = {}): void => {
   const queryStr = convertObjectToQuery(params);
   navigateTo({
@@ -167,6 +234,11 @@ export const quickNavigateTo = (page: string, { params = {} } = {}): void => {
   });
 };
 
+/**
+ * ZH: 快速重定向到指定页面。
+ * 
+ * EN: Quickly redirect to a page.
+ */
 export const quickRedirectTo = (page: string, { params = {} } = {}): void => {
   const queryStr = convertObjectToQuery(params);
   redirectTo({
