@@ -3,7 +3,7 @@
  */
 import {
   showToast, getWindowInfo, getSystemInfoSync, getCurrentInstance,
-  navigateTo, redirectTo, login,
+  navigateTo, redirectTo, login, pageScrollTo,
 } from "@tarojs/taro";
 import { convertObjectToQuery, getBrowserInfo } from "mazey";
 
@@ -243,5 +243,17 @@ export const quickRedirectTo = (page: string, { params = {} } = {}): void => {
   const queryStr = convertObjectToQuery(params);
   redirectTo({
     url: `/pages/${page}/index${queryStr}`,
+  });
+};
+
+/**
+ * ZH: 快速滚动到指定元素。
+ * 
+ * EN: Quickly scroll to a specified element.
+ */
+export const quickScrollTo = (selector: string, duration = 300): void => {
+  pageScrollTo({
+    selector,
+    duration,
   });
 };
