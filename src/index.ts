@@ -14,10 +14,17 @@ import { convertObjectToQuery, getBrowserInfo } from "mazey";
  */
 export const getCurrentPage = () => {
   const ins = getCurrentInstance();
+  let page = "";
   if (ins && ins.router && ins.router.path) {
-    return ins.router.path;
+    page = ins.router.path;
   }
-  return "";
+  if (page && page.indexOf("?") > -1) {
+    const arr = page.split("?");
+    if (arr.length === 2 && arr[0]) {
+      page = arr[0];
+    } 
+  }
+  return page;
 };
 
 /**
