@@ -86,6 +86,13 @@ export const getEnv = (): string => {
   return process.env.TARO_ENV || "";
 };
 
+/**
+ * ZH: 调用接口获取登录凭证（code）。
+ * 
+ * EN: Call the interface to get the login credential (code).
+ * 
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html
+ */
 export const getLoginCodeAsync = async () => {
   const res = await new Promise<string>((resolve, reject) => {
     login({
