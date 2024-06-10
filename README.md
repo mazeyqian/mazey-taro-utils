@@ -20,6 +20,20 @@ npm install mazey-taro-utils --save
 
 Of course, you can also download this file and serve it yourself. The file locates at the `lib/mazey-taro-utils.min.js`.
 
+## Quick Start
+
+```javascript
+import { getLoginCodeAsync } from "mazey-taro-utils";
+
+getLoginCodeAsync()
+  .then((code) => {
+    console.log(`Login code: ${code}`);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 ## Usage
 
 ### `quickToast`
