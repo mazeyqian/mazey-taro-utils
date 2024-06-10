@@ -50,6 +50,167 @@ Displays a toast message.
 quickToast('Hello, world!');
 ```
 
+### `quickNavigateTo`
+
+Navigates to a specified page.
+
+**Parameters:**
+
+- `page` (string): The page to navigate to. This should be the name of the directory under `/pages` without the `/index` part.
+- `params` (object, optional): Query parameters to include in the URL.
+
+**Example Usage:**
+
+```javascript
+quickNavigateTo('home', { params: { userId: 123 } });
+```
+
+### `quickRedirectTo`
+
+Redirects to a specified page, without keeping the current page in the navigation history.
+
+**Parameters:**
+
+- `page` (string): The page to redirect to. This should be the name of the directory under `/pages` without the `/index` part.
+- `params` (object, optional): Query parameters to include in the URL.
+
+**Example Usage:**
+
+```javascript
+quickRedirectTo('home', { params: { userId: 123 } });
+```
+
+### `quickScrollTo`
+
+Quickly scrolls to a specified element on the page.
+
+**Parameters:**
+
+- `selector` (string): The selector of the element to scroll to.
+- `duration` (number, optional): The duration of the scroll animation in milliseconds. Default is 300ms.
+
+**Example Usage:**
+
+```javascript
+quickScrollTo('#elementId', 500);
+```
+
+### `getEnv`
+
+Gets the current environment the application is running in.
+
+**Returns:** `string`
+
+- The name of the current environment (e.g., `'h5'`, `'weapp'`, etc.).
+
+**Example Usage:**
+
+```javascript
+console.log(`Current environment: ${getEnv()}`);
+```
+
+### `getCurrentPage`
+
+Gets the path of the current page.
+
+**Returns:** `string`
+
+**Example Usage:**
+
+```javascript
+console.log(`Current page path: ${getCurrentPage()}`);
+```
+
+### `getAllParams`
+
+Gets all parameters of the current page.
+
+**Returns:** `object`
+
+**Example Usage:**
+
+```javascript
+console.log(`Current page params: ${JSON.stringify(getAllParams())}`);
+```
+
+### `getQueryParam`
+
+Gets the value of a query parameter from the current path.
+
+**Parameters:**
+
+- `name` (string): The name of the query parameter.
+
+**Returns:** `string`
+
+**Example Usage:**
+
+```javascript
+const userId = getQueryParam('userId');
+console.log(`User ID: ${userId}`);
+```
+
+### `getWindowSize`
+
+Gets the size of the current window.
+
+**Returns:** `object`
+
+- `width` (number): The width of the window.
+- `height` (number): The height of the window.
+- `ratio` (number): The width-to-height ratio.
+- `hwRatio` (number): The height-to-width ratio.
+
+**Example Usage:**
+
+```javascript
+const { width, height, ratio, hwRatio } = getWindowSize();
+console.log(`Window size - Width: ${width}, Height: ${height}, Ratio: ${ratio}, HW Ratio: ${hwRatio}`);
+```
+
+### `getSystem`
+
+Gets the current system information, such as "iOS 14.4".
+
+**Returns:** `string`
+
+**Example Usage:**
+
+```javascript
+const systemInfo = getSystem();
+console.log(`System Info: ${systemInfo}`);
+```
+
+### `getLoginCodeAsync`
+
+Calls the interface to get the login credential (code).
+
+**Returns:** `Promise<string>`
+
+**Example Usage:**
+
+```javascript
+getLoginCodeAsync().then(code => {
+  console.log(`Login code: ${code}`);
+}).catch(err => {
+  console.error(`Failed to get login code: ${err}`);
+});
+```
+
+### `isMiniProgram`
+
+Checks if the current environment is a WeChat Mini Program.
+
+**Returns:** `boolean`
+
+**Example Usage:**
+
+```javascript
+if (isMiniProgram()) {
+  console.log('Running in a WeChat Mini Program');
+}
+```
+
 ### `isH5`
 
 Determines if the current environment is a web environment (H5).
@@ -67,46 +228,46 @@ if (isH5()) {
 }
 ```
 
-### `getEnv`
+### `isWideScreen`
 
-Gets the current environment the application is running in.
+Checks if the device has a wide screen.
 
-**Returns:** `string`
-
-- The name of the current environment (e.g., `'h5'`, `'weapp'`, etc.).
+**Returns:** `boolean`
 
 **Example Usage:**
 
 ```javascript
-console.log(`Current environment: ${getEnv()}`);
+if (isWideScreen()) {
+  console.log('Device has a wide screen');
+}
 ```
 
-### `quickNavigateTo`
+### `isIOS`
 
-Navigates to a specified page.
+Checks if the system is iOS.
 
-**Parameters:**
-
-- `page` (string): The page to navigate to. This should be the name of the directory under `/pages` without the `/index` part.
+**Returns:** `boolean`
 
 **Example Usage:**
 
 ```javascript
-quickNavigateTo('home');
+if (isIOS()) {
+  console.log('Running on iOS');
+}
 ```
 
-### `quickRedirectTo`
+### `isAndroid`
 
-Redirects to a specified page, without keeping the current page in the navigation history.
+Checks if the system is Android.
 
-**Parameters:**
-
-- `page` (string): The page to redirect to. This should be the name of the directory under `/pages` without the `/index` part.
+**Returns:** `boolean`
 
 **Example Usage:**
 
 ```javascript
-quickRedirectTo('login');
+if (isAndroid()) {
+  console.log('Running on Android');
+}
 ```
 
 ## Contributing
